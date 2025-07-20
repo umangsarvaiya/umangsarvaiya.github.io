@@ -2,17 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Auto Result Analyzer - 91 Club</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
+  <title>Number Analyzer Tool</title>
 </head>
 <body>
   <div class="container">
-    <h1>🔢 Auto Result Analyzer</h1>
-    <input type="text" id="resultInput" placeholder="Enter recent result numbers (comma separated)" />
-    <button onclick="analyzeResults()">Analyze</button>
-    <div id="output"></div>
+    <h1 id="app-title">Number Analyzer</h1>
+    <select id="language" onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="gu">ગુજરાતી</option>
+    </select>
+    <input type="text" id="numberInput" placeholder="Enter numbers like 12 45 67" />
+    <button onclick="analyze()">Analyze</button>
+    <button onclick="clearHistory()">Clear History</button>
+    <div id="result"></div>
+    <canvas id="trendChart"></canvas>
+    <div id="history"></div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
 </body>
 </html>
